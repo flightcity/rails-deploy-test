@@ -3,6 +3,9 @@ lock '3.4.0'
 
 set :application, 'rails-deploy-test'
 set :repo_url, 'git@github.com:flightcity/rails-deploy-test.git'
+set :deploy_to, '/var/www/rails-deploy-test'
+set :log_level, :debug
+
 set :rbenv_path, '/home/ec2-user/.rbenv/'
 
 # Default branch is :master
@@ -34,24 +37,15 @@ set :rbenv_path, '/home/ec2-user/.rbenv/'
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
+ 
+# nokogiri はシステムライブラリを使うため bundle install にオプションを指定する
 set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
-
+ 
 namespace :deploy do
   desc 'Restart application'
   task :restart do
     invoke 'unicorn:restart'
   end
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
 end
-
 after 'deploy:publishing', 'deploy:restart'
