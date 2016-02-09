@@ -1,6 +1,6 @@
 root = "/var/www/rails-deploy-test/current"
 working_directory root
-pid "#{root}../shared/tmp/pids/unicorn.pid"
+pid "#{root}/../shared/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
  
