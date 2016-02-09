@@ -51,4 +51,4 @@ production:
   <<: *default
   database: rails-deploy-test_production
   username: rails-deploy-test
-  password: <%= ENV['RAILS-DEPLOY-TEST_DATABASE_PASSWORD'] %>
+  password: <%= ENV['RAILS_DEPLOY_TEST_DATABASE_PASSWORD'] %>
