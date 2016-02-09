@@ -1,3 +1,22 @@
+# staging.rb
+set :stage, :production
+set :unicorn_rack_env, "production"
+set :branch, 'master'
+set :rails_env, 'production'
+set :migration_role, 'db'
+ 
+role :app, %w{ec2-user@54.249.96.74}
+role :web, %w{ec2-user@54.249.96.74}
+role :db, %w{ec2-user@54.249.96.74}
+ 
+set :ssh_options, {
+  keys: [File.expand_path('~/.ssh/ec2-browser-automation-test.pem')],
+  forward_agent: true,
+  auth_methods: %w(publickey)
+}
+ 
+server '54.249.96.74:22222', user: 'ec2-user', roles: %w{web app db}
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
