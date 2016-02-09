@@ -3,6 +3,7 @@ lock '3.4.0'
 
 set :application, 'rails-deploy-test'
 set :repo_url, 'git@github.com:flightcity/rails-deploy-test.git'
+set :rbenv_path, '/home/ec2-user/.rbenv/'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

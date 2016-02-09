@@ -1,7 +1,7 @@
 # staging.rb
 set :stage, :staging
 set :unicorn_rack_env, "staging"
-set :branch, 'dev'
+set :branch, 'master'
 set :rails_env, 'staging'
 set :migration_role, 'db'
  
